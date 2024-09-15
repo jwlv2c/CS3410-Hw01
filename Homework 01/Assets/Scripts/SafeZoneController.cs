@@ -15,16 +15,17 @@ public class SafeZoneController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        selfBody = GetComponent<Rigidbody2D>();
+
         float randomX = Random.Range(-1.0f, 1.0f);
         float randomY = Random.Range(-1.0f, 1.0f);
-        velocityDir = new Vector2(randomX * speed, randomY * speed);
-        selfBody = GetComponent<Rigidbody2D>();
-        selfBody.velocity = velocityDir;
-        Physics2D.IgnoreCollision(playerObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        velocityDir = new Vector2(randomX, randomY);
+        selfBody.velocity = velocityDir * speed;
     }
 
     private void FixedUpdate()
     {
+        if (selfBody.velocity.magnitude > speed) selfBody.velocity = velocityDir * speed;
         lastVelocity = selfBody.velocity;
     }
 
@@ -32,10 +33,11 @@ public class SafeZoneController : MonoBehaviour
     {
         if (otherObject.gameObject.CompareTag("Background"))
         {
-            var speed = lastVelocity.magnitude;
+            speed = lastVelocity.magnitude;
             var direction = Vector3.Reflect(lastVelocity.normalized, otherObject.contacts[0].normal);
+            velocityDir = direction;
 
-            selfBody.velocity = direction * speed * bounceFactor;
+            selfBody.velocity = bounceFactor * speed * velocityDir;
         }
 
     }

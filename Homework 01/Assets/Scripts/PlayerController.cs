@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using Unity.Mathematics;
+using UnityEngine.SocialPlatforms.Impl;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,12 +18,13 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D playerBody;
     private float timer = 0.0f;
-    private int gameDuration = 10;//60; //60 seconds long
+    private int gameDuration = 60; //60 seconds long
     private float captureTime;
     private float captureScore;
     private float score;
     private float scoreDisplay;
     private readonly int scoreFactor = 1;
+    private bool gameRunning = true;
 
     // Start is called before the first frame update
     void Start()
@@ -41,8 +44,7 @@ public class PlayerController : MonoBehaviour
         int seconds = (int)timer % 60;
         int timeToGo = gameDuration - seconds;
         timerText.text = "Time to go: " + timeToGo.ToString();
-        CheckTimer();
-        UpdateScore();
+        if(gameRunning ) CheckTimer();
     }
 
     void FixedUpdate()
@@ -51,49 +53,18 @@ public class PlayerController : MonoBehaviour
         playerBody.velocity = moveDirection * speed;
 
         //Prevents excess UFO rotations
-        if (math.abs(playerBody.angularVelocity) > 5)
+        if (Math.Abs(playerBody.angularVelocity) > 5)
         {
-            if (playerBody.angularVelocity < 0) playerBody.angularVelocity = -5; 
+            if (playerBody.angularVelocity < 0) playerBody.angularVelocity = -5;
             else playerBody.angularVelocity = 5;
         }
+        if(gameRunning) UpdateScore();
     }
-
-    public void OnCollisionEnter2D(Collision2D otherObject)
-    {
-        if(otherObject.gameObject.CompareTag("Obstacle"))
-        {
-            captureTime = timer*100;
-            captureTime = (int)captureTime;
-            captureTime = captureTime / 100;
-            timerText.gameObject.SetActive(false);
-            victoryText.text = "You Survived for " + captureTime.ToString() + " seconds\n Your Score:" + captureScore.ToString();
-            restartButton.gameObject.SetActive(true);
-        }
-
-        if (otherObject.gameObject.CompareTag("Background"))
-        {
-            playerBody.velocity = Vector2.zero;
-        }
-    }
-
+    
     private void CheckTimer()
     {
-        if (timer > gameDuration)
-        {
-            captureTime = gameDuration;
-            captureScore = scoreDisplay;
-            timerText.gameObject.SetActive(false);
-            ScoreText.gameObject.SetActive(false);
-            restartButton.gameObject.SetActive(true);
-            
-            victoryText.text = "You Win! You Survived for " + captureTime.ToString() + " seconds\n Your Score: " + captureScore.ToString();
-        }
-    }
-
-    public void OnRestartButtonPress()
-    {
-        SceneManager.LoadScene("MainScene");
-    }
+        if (timer > gameDuration) EndGame(false); //Game has been won!
+    }   
 
     private void UpdateScore()
     {
@@ -101,15 +72,44 @@ public class PlayerController : MonoBehaviour
         float distanceToSafeZone = distanceVector.magnitude;
         float safeZoneRadius = safeZone.transform.localScale.x / 2 + 2 * playerBody.transform.localScale.x;
 
-        if (distanceToSafeZone > safeZoneRadius) //outside the safezone
-        {
-            score += distanceToSafeZone * scoreFactor * Time.deltaTime;
-        }
+        //outside the safezone
+        if (distanceToSafeZone > safeZoneRadius) score += distanceToSafeZone * scoreFactor * Time.deltaTime;
 
         if((distanceToSafeZone - safeZoneRadius) < 0) distanceToSafeZone = safeZoneRadius; //Forces multiplier to be 0
 
-        scoreDisplay = (math.floor(score * 100)) / 100;
-        ScoreText.text = "Score: " + scoreDisplay.ToString() + "\n Multiplier: " + (math.floor((distanceToSafeZone - safeZoneRadius)*100))/100;
+        scoreDisplay = (int)((Math.Floor((score * 100))) / 100);
+        ScoreText.text = "Score: " + scoreDisplay.ToString() + "\n Multiplier: " + (int)(Math.Floor((distanceToSafeZone - safeZoneRadius)*100))/100;
 
+    }
+
+    public void OnCollisionEnter2D(Collision2D otherObject)
+    {
+        if (otherObject.gameObject.CompareTag("Obstacle") && gameRunning) EndGame(true); //Player collided with Obstacle object. End of game is called
+
+        if (otherObject.gameObject.CompareTag("Background")) playerBody.velocity = Vector2.zero;
+    }
+
+    private void EndGame(bool hitObject)
+    {
+        gameRunning = false;
+        timerText.gameObject.SetActive(false);
+        ScoreText.gameObject.SetActive(false);
+        restartButton.gameObject.SetActive(true);
+
+        captureTime = timer * 100;
+        captureTime = (int)captureTime;
+        captureTime = captureTime / 100;
+        captureScore = (int)scoreDisplay;
+        
+        if (hitObject) victoryText.text = "";
+        else victoryText.text = "You Win!";
+
+        victoryText.text += "You Survived for " + captureTime.ToString() + " seconds\n Your Score: " + captureScore.ToString();
+
+    }
+
+    public void OnRestartButtonPress()
+    {
+        SceneManager.LoadScene("MainScene");
     }
 }

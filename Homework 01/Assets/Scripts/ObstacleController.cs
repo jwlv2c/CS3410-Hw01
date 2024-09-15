@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,29 +18,36 @@ public class ObstacleController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float randomX = Random.Range(-1.0f, 1.0f);
-        float randomY = Random.Range(-1.0f, 1.0f);
-        velocityDir = new Vector2(randomX*speed, randomY*speed);
         selfBody = GetComponent<Rigidbody2D>();
-        selfBody.velocity = velocityDir;
+
+        float randomX = UnityEngine.Random.Range(-1.0f, 1.0f);
+        float randomY = UnityEngine.Random.Range(-1.0f, 1.0f);
+        velocityDir = new Vector2(randomX, randomY);
+        selfBody.velocity = velocityDir * speed;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         transform.Rotate(0, 0, angleVel * Time.deltaTime);
+        
+        if (Math.Abs(selfBody.angularVelocity) > angleVel)
+        {
+            if (selfBody.angularVelocity < 0) selfBody.angularVelocity = -5;
+            else selfBody.angularVelocity = 5;
+        }
+
+        if (selfBody.velocity.magnitude > speed ) selfBody.velocity = velocityDir * speed;
         lastVelocity = selfBody.velocity;
     }
 
     private void OnCollisionEnter2D(Collision2D otherObject) 
     {
-        if (otherObject.gameObject.CompareTag("Background") || otherObject.gameObject.CompareTag("SafeZone"))
-        {
-            var speed = lastVelocity.magnitude;
-            var direction = Vector3.Reflect(lastVelocity.normalized, otherObject.contacts[0].normal);
+        speed = lastVelocity.magnitude;
+        var direction = Vector3.Reflect(lastVelocity.normalized, otherObject.contacts[0].normal);
+        velocityDir = direction;
 
-            selfBody.velocity = direction * speed * bounceFactor;
-        }
+        selfBody.velocity = bounceFactor * speed * velocityDir;
     }
 
 }

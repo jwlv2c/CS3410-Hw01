@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "E:\\Coding Practice\\Unity Assignments\\Homework\\Homework 01\\Homework 01\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{6B6FE1BE-C62D-5745-5706-CB2EFF5D4F06}|Assembly-CSharp.csproj|e:\\coding practice\\unity assignments\\homework\\homework 01\\homework 01\\assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B6FE1BE-C62D-5745-5706-CB2EFF5D4F06}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B6FE1BE-C62D-5745-5706-CB2EFF5D4F06}|Assembly-CSharp.csproj|E:\\Coding Practice\\Unity Assignments\\Homework\\Homework 01\\Homework 01\\assets\\scripts\\childplacement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B6FE1BE-C62D-5745-5706-CB2EFF5D4F06}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\childplacement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6B6FE1BE-C62D-5745-5706-CB2EFF5D4F06}|Assembly-CSharp.csproj|E:\\Coding Practice\\Unity Assignments\\Homework\\Homework 01\\Homework 01\\assets\\scripts\\obstaclecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6B6FE1BE-C62D-5745-5706-CB2EFF5D4F06}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\obstaclecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6B6FE1BE-C62D-5745-5706-CB2EFF5D4F06}|Assembly-CSharp.csproj|e:\\coding practice\\unity assignments\\homework\\homework 01\\homework 01\\assets\\scripts\\safezonecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{6B6FE1BE-C62D-5745-5706-CB2EFF5D4F06}|Assembly-CSharp.csproj|E:\\Coding Practice\\Unity Assignments\\Homework\\Homework 01\\Homework 01\\assets\\scripts\\safezonecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6B6FE1BE-C62D-5745-5706-CB2EFF5D4F06}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\safezonecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6B6FE1BE-C62D-5745-5706-CB2EFF5D4F06}|Assembly-CSharp.csproj|e:\\coding practice\\unity assignments\\homework\\homework 01\\homework 01\\assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B6FE1BE-C62D-5745-5706-CB2EFF5D4F06}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,43 +26,55 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "ChildPlacement.cs",
+              "DocumentMoniker": "E:\\Coding Practice\\Unity Assignments\\Homework\\Homework 01\\Homework 01\\Assets\\Scripts\\ChildPlacement.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\ChildPlacement.cs",
+              "ToolTip": "E:\\Coding Practice\\Unity Assignments\\Homework\\Homework 01\\Homework 01\\Assets\\Scripts\\ChildPlacement.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ChildPlacement.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAACgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-15T20:31:21.991Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "SafeZoneController.cs",
               "DocumentMoniker": "E:\\Coding Practice\\Unity Assignments\\Homework\\Homework 01\\Homework 01\\Assets\\Scripts\\SafeZoneController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\SafeZoneController.cs",
               "ToolTip": "E:\\Coding Practice\\Unity Assignments\\Homework\\Homework 01\\Homework 01\\Assets\\Scripts\\SafeZoneController.cs",
               "RelativeToolTip": "Assets\\Scripts\\SafeZoneController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-15T18:20:31.476Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-15T18:20:31.476Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "ObstacleController.cs",
               "DocumentMoniker": "E:\\Coding Practice\\Unity Assignments\\Homework\\Homework 01\\Homework 01\\Assets\\Scripts\\ObstacleController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\ObstacleController.cs",
-              "ToolTip": "E:\\Coding Practice\\Unity Assignments\\Homework\\Homework 01\\Homework 01\\Assets\\Scripts\\ObstacleController.cs*",
-              "RelativeToolTip": "Assets\\Scripts\\ObstacleController.cs*",
-              "ViewState": "AgIAACwAAAAAAAAAAAAAACwAAAADAAAAAAAAAA==",
+              "ToolTip": "E:\\Coding Practice\\Unity Assignments\\Homework\\Homework 01\\Homework 01\\Assets\\Scripts\\ObstacleController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ObstacleController.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAgwDEAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-15T18:04:57.609Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "PlayerController.cs",
               "DocumentMoniker": "E:\\Coding Practice\\Unity Assignments\\Homework\\Homework 01\\Homework 01\\Assets\\Scripts\\PlayerController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerController.cs",
               "ToolTip": "E:\\Coding Practice\\Unity Assignments\\Homework\\Homework 01\\Homework 01\\Assets\\Scripts\\PlayerController.cs",
               "RelativeToolTip": "Assets\\Scripts\\PlayerController.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAAIwFgAAABIAAAAAAAAAA==",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAswGEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-15T18:04:55.875Z",
               "EditorCaption": ""
