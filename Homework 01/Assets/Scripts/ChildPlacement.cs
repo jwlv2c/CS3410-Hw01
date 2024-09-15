@@ -5,10 +5,19 @@ using UnityEngine.UIElements;
 
 public class ChildPlacement : MonoBehaviour
 {
+    /*
+        Script Purpose:
+            Finds all of the children of the object that this script is attached to 
+            with the "Obstacle" Tag and arranges the children around itself in
+            an equally angle circle, with the radius dictated by the float at
+            the top of the script "distFromCenter"
 
-    //Purpose of this script is to find all of the children of the object with the tag "Obstacles" and arrange the children in a circle around the center with a
-    // radius of "distFromCenter". Rather do this since we could make the game easier or harder in the future by varying the number of objects you need to avoid
-   
+        Commentary:
+            If in the future, we wanted to make the game harder, we could increase/
+            decrease the number of objects, and this would assist in making that 
+            difficulty much easier to place objects. 
+    */
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +32,7 @@ public class ChildPlacement : MonoBehaviour
 
         int numOfChildren = childObjects.Count;
         float angleBetweenChildren = 360/numOfChildren;
-        angleBetweenChildren = UnityEngine.Mathf.Deg2Rad * angleBetweenChildren;
+        angleBetweenChildren = UnityEngine.Mathf.Deg2Rad * angleBetweenChildren; //Unity Angles are in Radians, not degrees
 
         for (int i = 0; i < numOfChildren; i++)
         {

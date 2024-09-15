@@ -9,6 +9,17 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerController : MonoBehaviour
 {
+    /*
+        Script Purpose:
+            Controls the Player, as well as normal game functions
+
+        Commentary:
+            Most complicated game object since it has to control the player, and 
+            UI texts. Really, the most complicated part of this script was how to 
+            capture the end-game states as snapshots and not as continually updating
+            values for the Timer and Score.
+    */
+
     public float speed;
     public Text timerText;
     public Text victoryText;
@@ -78,6 +89,8 @@ public class PlayerController : MonoBehaviour
         if((distanceToSafeZone - safeZoneRadius) < 0) distanceToSafeZone = safeZoneRadius; //Forces multiplier to be 0
 
         scoreDisplay = (int)((Math.Floor((score * 100))) / 100);
+
+        //Originally going to make the multiplier a float, but decided to cast it as an int to make it a little cleaner on the UI
         ScoreText.text = "Score: " + scoreDisplay.ToString() + "\n Multiplier: " + (int)(Math.Floor((distanceToSafeZone - safeZoneRadius)*100))/100;
 
     }

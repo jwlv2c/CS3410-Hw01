@@ -6,6 +6,18 @@ using UnityEngine.UIElements;
 
 public class ObstacleController : MonoBehaviour
 {
+    /*
+        Script Purpose:
+            Controls the Prefab Object "Obstacle"
+
+        Commentary:
+            Objects start with a random direction, multiplied by some speed. They
+            can then bounce off of each other, walls, or the player (though
+            the player will trigger a game over, not controlled in this script)
+
+            Objects also have a slight rotation to them to make it a little more fun
+    */
+
     public float speed = 5;
     private Angle sinFunction;
     private float angleVel = 45f;
@@ -44,10 +56,12 @@ public class ObstacleController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D otherObject) 
     {
         speed = lastVelocity.magnitude;
+        
+        //Solution given on support forms since we can't use the material properties of the walls to bounce
         var direction = Vector3.Reflect(lastVelocity.normalized, otherObject.contacts[0].normal);
         velocityDir = direction;
 
         selfBody.velocity = bounceFactor * speed * velocityDir;
     }
-
+    
 }
