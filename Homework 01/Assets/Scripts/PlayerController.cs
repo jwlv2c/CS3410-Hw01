@@ -16,11 +16,12 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D playerBody;
     private float timer = 0.0f;
-    private int gameDuration = 60; //60 seconds long
+    private int gameDuration = 10;//60; //60 seconds long
     private float captureTime;
+    private float captureScore;
     private float score;
     private float scoreDisplay;
-    private int scoreFactor = 1;
+    private readonly int scoreFactor = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +49,13 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         playerBody.velocity = moveDirection * speed;
-        
+
+        //Prevents excess UFO rotations
+        if (math.abs(playerBody.angularVelocity) > 5)
+        {
+            if (playerBody.angularVelocity < 0) playerBody.angularVelocity = -5; 
+            else playerBody.angularVelocity = 5;
+        }
     }
 
     public void OnCollisionEnter2D(Collision2D otherObject)
@@ -59,7 +66,7 @@ public class PlayerController : MonoBehaviour
             captureTime = (int)captureTime;
             captureTime = captureTime / 100;
             timerText.gameObject.SetActive(false);
-            victoryText.text = "You Survived for " + captureTime.ToString() + " seconds";
+            victoryText.text = "You Survived for " + captureTime.ToString() + " seconds\n Your Score:" + captureScore.ToString();
             restartButton.gameObject.SetActive(true);
         }
 
@@ -74,9 +81,12 @@ public class PlayerController : MonoBehaviour
         if (timer > gameDuration)
         {
             captureTime = gameDuration;
+            captureScore = scoreDisplay;
             timerText.gameObject.SetActive(false);
-            victoryText.text = "You Win!\\ You Survived for " + captureTime.ToString() + " seconds";
+            ScoreText.gameObject.SetActive(false);
             restartButton.gameObject.SetActive(true);
+            
+            victoryText.text = "You Win! You Survived for " + captureTime.ToString() + " seconds\n Your Score: " + captureScore.ToString();
         }
     }
 
@@ -89,13 +99,17 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 distanceVector = playerBody.transform.position - safeZone.transform.position;
         float distanceToSafeZone = distanceVector.magnitude;
+        float safeZoneRadius = safeZone.transform.localScale.x / 2 + 2 * playerBody.transform.localScale.x;
 
-        if (distanceToSafeZone > (safeZone.transform.localScale.x/2 + 2*playerBody.transform.localScale.x)) //outside the safezone
+        if (distanceToSafeZone > safeZoneRadius) //outside the safezone
         {
             score += distanceToSafeZone * scoreFactor * Time.deltaTime;
-            //scoreDisplay = (math.floor(score * 100)) / 100;
-            ScoreText.text = "Score: " + score.ToString();
         }
+
+        if((distanceToSafeZone - safeZoneRadius) < 0) distanceToSafeZone = safeZoneRadius; //Forces multiplier to be 0
+
+        scoreDisplay = (math.floor(score * 100)) / 100;
+        ScoreText.text = "Score: " + scoreDisplay.ToString() + "\n Multiplier: " + (math.floor((distanceToSafeZone - safeZoneRadius)*100))/100;
 
     }
 }

@@ -8,6 +8,7 @@ public class SafeZoneController : MonoBehaviour
     private Vector2 velocityDir;
     private Rigidbody2D selfBody;
     private Vector3 lastVelocity;
+    public GameObject playerObject;
 
     public float bounceFactor = 1; //0 - no bounce, 1 - reflect bounce, >1 - overbounce
 
@@ -19,6 +20,12 @@ public class SafeZoneController : MonoBehaviour
         velocityDir = new Vector2(randomX * speed, randomY * speed);
         selfBody = GetComponent<Rigidbody2D>();
         selfBody.velocity = velocityDir;
+        Physics2D.IgnoreCollision(playerObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+    }
+
+    private void FixedUpdate()
+    {
+        lastVelocity = selfBody.velocity;
     }
 
     private void OnCollisionEnter2D(Collision2D otherObject)
