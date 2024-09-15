@@ -1,13 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class ObstacleController : MonoBehaviour
+public class SafeZoneController : MonoBehaviour
 {
     public float speed = 5;
-    private Angle sinFunction;
-    private float angleVel = 45f;
     private Vector2 velocityDir;
     private Rigidbody2D selfBody;
     private Vector3 lastVelocity;
@@ -19,27 +16,20 @@ public class ObstacleController : MonoBehaviour
     {
         float randomX = Random.Range(-1.0f, 1.0f);
         float randomY = Random.Range(-1.0f, 1.0f);
-        velocityDir = new Vector2(randomX*speed, randomY*speed);
+        velocityDir = new Vector2(randomX * speed, randomY * speed);
         selfBody = GetComponent<Rigidbody2D>();
         selfBody.velocity = velocityDir;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter2D(Collision2D otherObject)
     {
-        transform.Rotate(0, 0, angleVel * Time.deltaTime);
-        lastVelocity = selfBody.velocity;
-    }
-
-    private void OnCollisionEnter2D(Collision2D otherObject) 
-    {
-        if (otherObject.gameObject.CompareTag("Background") || otherObject.gameObject.CompareTag("SafeZone"))
+        if (otherObject.gameObject.CompareTag("Background"))
         {
             var speed = lastVelocity.magnitude;
             var direction = Vector3.Reflect(lastVelocity.normalized, otherObject.contacts[0].normal);
 
             selfBody.velocity = direction * speed * bounceFactor;
         }
-    }
 
+    }
 }
