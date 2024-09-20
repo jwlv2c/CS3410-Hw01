@@ -10,9 +10,12 @@ using UnityEngine.SocialPlatforms.Impl;
 public class PlayerController : MonoBehaviour
 {
     /*
+        Author:
+            Jacob Listhartke
+
         Script Purpose:
             Controls the Player, as well as normal game functions
-
+            
         Commentary:
             Most complicated game object since it has to control the player, and 
             UI texts. Really, the most complicated part of this script was how to 

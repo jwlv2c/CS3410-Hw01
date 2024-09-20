@@ -7,6 +7,9 @@ using UnityEngine.UIElements;
 public class ObstacleController : MonoBehaviour
 {
     /*
+        Author:
+            Jacob Listhartke
+            
         Script Purpose:
             Controls the Prefab Object "Obstacle"
 

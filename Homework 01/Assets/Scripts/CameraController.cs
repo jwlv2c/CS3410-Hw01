@@ -5,6 +5,9 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     /*
+        Author:
+            Jacob Listhartke
+            
         Script Purpose:
             Controls the camera such that it follows the player using the standard offset method described in class
     */

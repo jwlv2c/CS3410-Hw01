@@ -6,6 +6,9 @@ using UnityEngine.UIElements;
 public class ChildPlacement : MonoBehaviour
 {
     /*
+        Author:
+            Jacob Listhartke
+            
         Script Purpose:
             Finds all of the children of the object that this script is attached to 
             with the "Obstacle" Tag and arranges the children around itself in

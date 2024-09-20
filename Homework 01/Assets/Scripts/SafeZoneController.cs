@@ -5,6 +5,9 @@ using UnityEngine;
 public class SafeZoneController : MonoBehaviour
 {
     /*
+        Author:
+            Jacob Listhartke
+
         Script Purpose:
             This script controls the behavior of the Safe Zone, which the
             player can hide in to avoid objects on screen
